@@ -109,6 +109,29 @@ Music *music_initFromString(char *descr) {
 
 /**  Remaining functions of music.h to be implemented here **/
 
+Music *music_init() {
+  Music *m = NULL;
+
+  if (!(m = (Music *) calloc (sizeof(Music)))) {
+    return NULL;
+  }
+
+    m->id = 0;
+    m->title[0] = '\0';
+    m->artist[0] = '\0';
+    m->duration = 0;
+    m->state = NOT_LISTENED;
+
+    return m;
+}
+
+void music_free(void *m) {
+    if (!m) return;
+    free(m);
+}
+
+
+
 
 int music_formatted_print (FILE * pf, const void * m) {
 	Music * aux;
@@ -228,3 +251,9 @@ State music_getState(const Music *m){
 
   return m->state;
 }
+
+int music_cmp(const void *m1, const void *m2) {
+  
+}
+
+
