@@ -130,26 +130,6 @@ void music_free(void *m) {
     free(m);
 }
 
-int music_formatted_print (FILE * pf, const void * m) {
-	Music * aux;
-	int counter = 0, minutes, sec;
-	if (!pf || !m) return -1;
-
-	aux = (Music*) m;
-	
-	if (!aux->duration || aux->duration <= 0) return -1;
-	minutes = aux->duration / 60;
-    sec = aux->duration % 60;
-	
-	counter = fprintf(pf, "\t ɴᴏᴡ ᴘʟᴀʏɪɴɢ: %s\n", aux->title);
-	counter += fprintf(pf, "\t • Artist %s •\n", aux->artist);
-	counter += fprintf(pf, "\t──────────⚪──────────\n");
-	counter += fprintf(pf, "\t\t◄◄⠀▐▐ ⠀►►\n");
-	counter += fprintf(pf, "\t 0:00 / %02d:%02d ───○ 🔊⠀\n\n", minutes, sec);
-	
-	return counter;
-}
-
 Status music_setId(Music *m, const long id){
   if(!m || id<0){
     return ERROR;
@@ -310,28 +290,24 @@ int music_plain_print(FILE *pf, const void *m) {
   return fprintf(pf, "[%ld, %s, %s, %u, %d]", music->id, music->title, music->artist, music->duration, music->state);
 }
 
-int music_formatted_print(FILE *pf, const void *m) {
-  const Music *aux = (const Music *)m;
+int music_formatted_print (FILE * pf, const void * m) {
+	Music * aux;
+	int counter = 0, minutes, sec;
+	if (!pf || !m) return -1;
 
-  int minutes = aux->duration / 60;
-  int sec = aux->duration % 60;
-  int counter = 0;
-
-  if (!pf || !m) {
-    return -1;
-  }
-
-  if (aux->duration <= 0) {
-    return -1;
-  }
-
-  counter += fprintf(pf, "\t ɴᴏᴡ ᴘʟᴀʏɪɴɢ: %s\n", aux->title);
-  counter += fprintf(pf, "\t • Artist %s •\n", aux->artist);
-  counter += fprintf(pf, "\t──────────⚪──────────\n");
-  counter += fprintf(pf, "\t\t◄◄⠀▐▐ ⠀►►\n");
-  counter += fprintf(pf, "\t 0:00 / %02d:%02d ───○ 🔊⠀\n\n", minutes, sec);
-
-  return counter;
+	aux = (Music*) m;
+	
+	if (!aux->duration || aux->duration <= 0) return -1;
+	minutes = aux->duration / 60;
+    sec = aux->duration % 60;
+	
+	counter = fprintf(pf, "\t ɴᴏᴡ ᴘʟᴀʏɪɴɢ: %s\n", aux->title);
+	counter += fprintf(pf, "\t • Artist %s •\n", aux->artist);
+	counter += fprintf(pf, "\t──────────⚪──────────\n");
+	counter += fprintf(pf, "\t\t◄◄⠀▐▐ ⠀►►\n");
+	counter += fprintf(pf, "\t 0:00 / %02d:%02d ───○ 🔊⠀\n\n", minutes, sec);
+	
+	return counter;
 }
 
 
