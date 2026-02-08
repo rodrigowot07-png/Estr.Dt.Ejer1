@@ -31,15 +31,15 @@ int main () {
 
     /*First song*/
     music_setId(m1, 10);
-    music_setTitle(m1, "Bohemian Rhapsody");
-    music_setArtist(m1, "Queen");
-    music_setDuration(m1, 355);
+    music_setTitle(m1, "Blinding Lights");
+    music_setArtist(m1, "The Weekend");
+    music_setDuration(m1, 200);
 
     /*Second song*/
     music_setId(m2, 20);
-    music_setTitle(m2, "Blinding Lights");
-    music_setArtist(m2, "The Weekend");
-    music_setDuration(m2, 200);
+    music_setTitle(m2, "Bohemian Rhapsody");
+    music_setArtist(m2, "Queen");
+    music_setDuration(m2, 355);
 
     /*Print both songs*/
     music_formatted_print(stdout, m1);
