@@ -61,7 +61,7 @@ Music *music_initFromString(char *descr) {
 
   if (!descr) return NULL;
 
-  buffer = strdup(descr);          /* copiar entrada */
+  buffer = strdup(descr);          
   if (!buffer) return NULL;
 
   m = music_init();
@@ -250,8 +250,88 @@ State music_getState(const Music *m){
 }
 
 int music_cmp(const void *m1, const void *m2) {
-  
+  const Music *a = (const Music *)m1;
+  const Music *b = (const Music *)m2;
+  int title_cmp;
 
+  if (!a && !b) {
+    return 0;
+  } else if (!a) {
+    return -1;
+  } else if (!b) {
+    return 1;
+  }
+
+  if (a->id != b->id) {
+    if (a->id < b->id) {
+      return -1;
+    } else {
+      return 1;
+    }
+  }
+
+  title_cmp = strcmp(a->title, b->title);
+
+  if (title_cmp != 0) {
+    return title_cmp
+  }
+
+  return strcmp(a->artist, b->artist);
+}
+
+void *music_copy(const void *src) {
+  const Music *original = (const Music *)src;
+  Music *copy = NULL;
+
+  if (!src) {
+    return NULL;
+  }
+
+  if (!(copy = music_init())) {
+    return NULL;
+  }
+
+  copy_id = original->id;
+  strcpy(copy->title, original->title);
+  strcpy(copy->artist, original->artist);
+  copy->duration = original->duration;
+  copy->state = original->state;
+
+  return copy;
+}
+
+int music_plain_print(FILE *pf, const void *m) {
+  const Music *music = (const Music *)m;
+
+  if (!pf || !m) {
+    return -1;
+  }
+
+  return fprintf(pf, "[%ld, %s, %s, %u, %d]", music->id, music->title, music->artist, music->duration, music->state);
+}
+
+int music_formatted_print(FILE *pf, const void *m) {
+  const Music *aux = (const Music *)m;
+
+  int minutes = aux->duration / 60;
+  int sec = aux->duration % 60;
+  int counter = 0;
+
+  if (!pf || !m) {
+    return -1;
+  }
+
+  if (aux->duration <= 0) {
+    return -1;
+  }
+
+  counter += fprintf(pf, "\t ɴᴏᴡ ᴘʟᴀʏɪɴɢ: %s\n", aux->title);
+  counter += fprintf(pf, "\t • Artist %s •\n", aux->artist);
+  counter += fprintf(pf, "\t──────────⚪──────────\n");
+  counter += fprintf(pf, "\t\t◄◄⠀▐▐ ⠀►►\n");
+  counter += fprintf(pf, "\t 0:00 / %02d:%02d ───○ 🔊⠀\n\n", minutes, sec);
+
+  return counter;
 }
 
 
