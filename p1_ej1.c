@@ -15,9 +15,9 @@
 #include <string.h>
 #include "music.h"
 
-int main() {
-    Music *m1=NULL;
-    Music *m2=NULL;
+int main () {
+    Music *m1 = NULL;
+    Music *m2 = NULL;
     Music *m3 = NULL;
     int cmp;
 
