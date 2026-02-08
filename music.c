@@ -255,7 +255,7 @@ int music_cmp(const void *m1, const void *m2) {
   title_cmp = strcmp(a->title, b->title);
 
   if (title_cmp != 0) {
-    return title_cmp
+    return title_cmp;
   }
 
   return strcmp(a->artist, b->artist);
@@ -273,7 +273,7 @@ void *music_copy(const void *src) {
     return NULL;
   }
 
-  copy_id = original->id;
+  copy->id = original->id;
   strcpy(copy->title, original->title);
   strcpy(copy->artist, original->artist);
   copy->duration = original->duration;
@@ -301,7 +301,7 @@ int music_formatted_print(FILE * pf, const void * m) {
 	
 	if (!aux->duration || aux->duration <= 0) return -1;
 	minutes = aux->duration / 60;
-    sec = aux->duration % 60;
+  sec = aux->duration % 60;
 	
 	counter = fprintf(pf, "\t ɴᴏᴡ ᴘʟᴀʏɪɴɢ: %s\n", aux->title);
 	counter += fprintf(pf, "\t • Artist %s •\n", aux->artist);
