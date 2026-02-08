@@ -52,7 +52,7 @@ int main () {
     if (cmp < 0 || cmp > 0) {
         printf("Equals? No\n");
     } else {
-        printf("Equals? Yes");
+        printf("Equals? Yes\n");
     }
         
     /*Print second song title*/
