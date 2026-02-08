@@ -114,7 +114,7 @@ Music *music_initFromString(char *descr) {
 Music *music_init() {
   Music *m = NULL;
 
-  if (!(m = (Music *) calloc (sizeof(Music)))) {
+  if (!(m = (Music *) calloc (1, sizeof(Music)))) {
     return NULL;
   }
 
