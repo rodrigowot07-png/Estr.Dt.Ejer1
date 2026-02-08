@@ -130,9 +130,6 @@ void music_free(void *m) {
     free(m);
 }
 
-
-
-
 int music_formatted_print (FILE * pf, const void * m) {
 	Music * aux;
 	int counter = 0, minutes, sec;
@@ -254,6 +251,7 @@ State music_getState(const Music *m){
 
 int music_cmp(const void *m1, const void *m2) {
   
+
 }
 
 
