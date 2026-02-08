@@ -55,58 +55,61 @@ Status music_setField (Music *m, char *key, char *value) {
 
 /*----------------------------------------------------------------------------------------*/
 Music *music_initFromString(char *descr) {
-  Music *m;
-  char *p;
-  char *key_start;
-  char *value_start;
-  char *buffer;
+    Music *m = NULL;
+    char *buffer = NULL;
+    char *p, *key, *value;
 
-  if (!descr) return NULL;
+    if (!descr) return NULL;
 
-  buffer = strdup(descr);          
-  if (!buffer) return NULL;
+    buffer = (char *)malloc(strlen(descr) + 1);
+    if (!buffer) return NULL;
+    strcpy(buffer, descr);
 
-  m = music_init();
-  if (!m) {
+    m = music_init();
+    if (!m) {
+        free(buffer);
+        return NULL;
+    }
+
+    p = buffer;
+
+    while (*p != '\0') {
+
+        /* Skip whitespace */
+        while (*p == ' ' || *p == '\t' || *p == '\n') {
+            p++;
+        }
+        if (*p == '\0') break;
+
+        /* Parse key */
+        key = p;
+        while (*p != '\0' && *p != ':') {
+            p++;
+        }
+        if (*p == '\0') break;
+        *p = '\0';
+        p++;
+
+        /* Expect opening quote */
+        if (*p != '"') break;
+        p++;
+
+        /* Parse value */
+        value = p;
+        while (*p != '\0' && *p != '"') {
+            p++;
+        }
+        if (*p == '\0') break;
+        *p = '\0';
+        p++;
+
+        music_setField(m, key, value);
+    }
+
     free(buffer);
-    return NULL;
-  }
-
-  p = buffer;
-
-  while (*p) {
-    /* Skip whitespace */
-    while (*p == ' ' || *p == '\t' || *p == '\n')
-      p++;
-
-    if (!*p) break;
-
-    /* Parse key */
-    key_start = p;
-    while (*p && *p != ':')
-      p++;
-
-    if (!*p) break;
-    *p++ = '\0';   /* terminate key */
-
-    /* Expect opening quote */
-    if (*p != '"') break;
-    p++;
-
-    /* Parse value */
-    value_start = p;
-    while (*p && *p != '"')
-      p++;
-
-    if (!*p) break;
-    *p++ = '\0';   /* terminate value */
-
-    music_setField(m, key_start, value_start);
-  }
-
-  free(buffer);
-  return m;
+    return m;
 }
+
 
 
 /**  Remaining functions of music.h to be implemented here **/
@@ -143,7 +146,7 @@ Status music_setId(Music *m, const long id){
 
 long music_getId(const Music *m){
   if(!m){
-    return NULL;
+    return -1;
   }
 
   return m->id;
@@ -154,7 +157,7 @@ Status music_setTitle(Music *m, const char *title){
     return ERROR;
   }
 
-  if(strlen(title)<0 || strlen(title)>STR_LENGTH){
+  if(strlen(title)>=STR_LENGTH){
     return ERROR;
   }
 
@@ -178,7 +181,7 @@ Status music_setArtist(Music *m, const char *artist){
     return ERROR;
   }
 
-  if(strlen(artist)<0 || strlen(artist)>STR_LENGTH){
+  if(strlen(artist)>=STR_LENGTH){
     return ERROR;
   }
 
@@ -198,17 +201,18 @@ const char* music_getArtist(const Music *m){
 }
 
 Status music_setDuration(Music *m, const unsigned short duration){
-  if(!m || duration<0){
+  if(!m){
     return ERROR;
   }
 
   m->duration = duration;
+
   return OK;
 }
 
 unsigned short music_getDuration(const Music *m){
   if(!m){
-    return NULL;
+    return 0;
   }
 
   return m->duration;
@@ -292,7 +296,7 @@ int music_plain_print(FILE *pf, const void *m) {
   return fprintf(pf, "[%ld, %s, %s, %u, %d]", music->id, music->title, music->artist, music->duration, music->state);
 }
 
-int music_formatted_print(FILE * pf, const void * m) {
+int music_formatted_print (FILE * pf, const void * m) {
 	Music * aux;
 	int counter = 0, minutes, sec;
 	if (!pf || !m) return -1;
@@ -301,7 +305,7 @@ int music_formatted_print(FILE * pf, const void * m) {
 	
 	if (!aux->duration || aux->duration <= 0) return -1;
 	minutes = aux->duration / 60;
-  sec = aux->duration % 60;
+    sec = aux->duration % 60;
 	
 	counter = fprintf(pf, "\t ɴᴏᴡ ᴘʟᴀʏɪɴɢ: %s\n", aux->title);
 	counter += fprintf(pf, "\t • Artist %s •\n", aux->artist);
