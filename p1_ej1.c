@@ -15,7 +15,7 @@
 #include <string.h>
 #include "music.h"
 
-int main () {
+int main() {
     Music *m1=NULL;
     Music *m2=NULL;
     Music *m3 = NULL;
@@ -43,7 +43,7 @@ int main () {
 
     /*Print both songs*/
     music_formatted_print(stdout, m1);
-    music_formatted_printf(stdout, m2);
+    music_formatted_print(stdout, m2);
     printf("\n");
 
     /*Compare both songs*/
@@ -54,7 +54,7 @@ int main () {
     } else if (cmp > 0) {
         printf("First song is longer than the third one\n");
     } else {
-        printf("Both songs have the same duration\n")
+        printf("Both songs have the same duration\n");
     }
 
     /*Print second song title*/
