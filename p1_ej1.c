@@ -46,17 +46,15 @@ int main () {
     music_formatted_print(stdout, m2);
     printf("\n");
 
-    /*Compare both songs*/
+    /*Compare the first and the second one*/
     cmp = music_cmp(m1, m2);
 
-    if (cmp < 0) {
-        printf("First song is shorter than the second one\n");
-    } else if (cmp > 0) {
-        printf("First song is longer than the third one\n");
+    if (cmp < 0 || cmp > 0) {
+        printf("Equals? No\n");
     } else {
-        printf("Both songs have the same duration\n");
+        printf("Equals? Yes");
     }
-
+        
     /*Print second song title*/
     printf("Second song title: %s\n", music_getTitle(m2));
 
