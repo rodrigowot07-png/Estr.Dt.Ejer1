@@ -296,7 +296,7 @@ int music_plain_print(FILE *pf, const void *m) {
   return fprintf(pf, "[%ld, %s, %s, %u, %d]", music->id, music->title, music->artist, music->duration, music->state);
 }
 
-int music_formatted_print (FILE * pf, const void * m) {
+int music_formatted_print(FILE * pf, const void * m) {
 	Music * aux;
 	int counter = 0, minutes, sec;
 	if (!pf || !m) return -1;
