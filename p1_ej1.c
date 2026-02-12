@@ -56,7 +56,7 @@ int main () {
     }
         
     /*Print second song title*/
-    printf("Second song title: %s\n", music_getTitle(m2));
+    printf("Music 2 title: %s\n", music_getTitle(m2));
 
     /*Copy the first song in a third one*/
     if (!(m3 = music_copy(m1))) {
@@ -67,7 +67,7 @@ int main () {
     }
 
     /*Print id of the third song*/
-    printf("Id of the third song: %ld\n", music_getId(m3));
+    printf("Music 3 id: %ld\n", music_getId(m3));
 
     /*Play the first and the third song*/
     music_formatted_print(stdout, m1);
