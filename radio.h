@@ -12,6 +12,9 @@
 #define RADIO_H
 
 #include "music.h"
+#include "types.h"
+
+#define MAX_MSC 4096
 
 typedef struct _Radio Radio;
 
