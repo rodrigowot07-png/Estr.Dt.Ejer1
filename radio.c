@@ -13,6 +13,25 @@ struct _Radio {
     int num_relations;
 };
 
+/*Private function*/
+int radio_findId(const Radio *r, long id) {
+    int i;
+
+    /*Control error*/
+    if (!r) {
+        return -1;
+    }
+
+    /*Finds the id of the music stored in the *songs array*/
+    for (i = 0; i < r->num_music; i++) {
+        if (music_getId(r->songs[i]) == id) {
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 Radio * radio_init() {
     Radio *r = NULL;
     int i, j;
@@ -137,25 +156,6 @@ Status radio_newRelation(Radio *r, long orig, long dest) {
     }
 
     return OK;
-}
-
-/*Private function*/
-int radio_findId(const Radio *r, long id) {
-    int i;
-
-    /*Control error*/
-    if (!r) {
-        return -1;
-    }
-
-    /*Finds the id of the music stored in the *songs array*/
-    for (i = 0; i < r->num_music; i++) {
-        if (music_getId(r->songs[i]) == id) {
-            return i;
-        }
-    }
-
-    return -1;
 }
 
 Bool radio_contains(const Radio *r, long id) {
