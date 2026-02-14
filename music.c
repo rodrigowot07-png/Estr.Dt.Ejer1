@@ -14,6 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "music.h"
+#include "types.h"
 
 
 /* START [STR_LENGTH] */
