@@ -316,6 +316,7 @@ Status radio_readFromFile(FILE *fin, Radio *r) {
 
     /*Reads the songs one by one*/
     for (i = 0; i < num_music; i++) {
+        
         /*Reads one full line */
         if (!fgets(buffer, sizeof(buffer), fin)) {
             return ERROR;
