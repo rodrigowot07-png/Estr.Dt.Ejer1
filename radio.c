@@ -6,6 +6,8 @@
 #include "music.h"
 #include "types.h"
 
+#define STR_LENGTH 64
+
 struct _Radio {
     Music *songs[MAX_MSC];
     Bool relations[MAX_MSC][MAX_MSC];
