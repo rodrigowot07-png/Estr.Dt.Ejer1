@@ -8,6 +8,7 @@
 
 #define STR_LENGTH 64
 
+
 struct _Radio {
     Music *songs[MAX_MSC];
     Bool relations[MAX_MSC][MAX_MSC];
@@ -45,7 +46,7 @@ Radio * radio_init() {
 
     /*Initializes number of musics and relations*/
     r->num_music = 0;
-    r->num->relations = 0;
+    r->num_relations = 0;
 
     /*Initializes songs and relations to FALSE*/
     for (i = 0; i < MAX_MSC; i++) {
@@ -154,7 +155,7 @@ Status radio_newRelation(Radio *r, long orig, long dest) {
     /*Creates relation*/
     if (!r->relations[i][j]) {
         r->relations[i][j] = TRUE;
-        r->relations++;
+        r->num_relations++;
     }
 
     return OK;
