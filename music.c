@@ -131,7 +131,10 @@ Music *music_init() {
 }
 
 void music_free(void *m) {
-    if (!m) return;
+    if (!m) {
+      return;
+    }
+    
     free(m);
 }
 
