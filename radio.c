@@ -225,7 +225,7 @@ int radio_getNumberOfRelationsFromId(const Radio *r, long id) {
     }
 
     /*Counts the number of relations*/
-    for (j == 0; j < r->num_music; j++) {
+    for (j = 0; j < r->num_music; j++) {
         if (r->relations[i][j] == TRUE) {
             counter++;
         }
