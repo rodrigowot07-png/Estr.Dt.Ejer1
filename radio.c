@@ -108,18 +108,6 @@ Status radio_newMusic(Radio *r, char *desc) {
     /*Adds the new music to *songs and increments the number of songs by 1*/
     r->songs[r->num_music++] = m;
 
-   /* Tiene errores
-    for (i = 0; i < r->num_music; i++) {
-        for (j = 0; j < i; j++) {
-            if (r->songs[i].id == r->songs[j].id) {
-                return OK;
-            } else {
-                r->songs[r->num_music] = r->songs[i];
-                r->num_music++;
-            }
-        }
-    } */
-
     return OK;
 }
 
