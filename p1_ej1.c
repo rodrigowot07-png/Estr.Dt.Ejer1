@@ -41,12 +41,12 @@ int main () {
     music_setArtist(m2, "Queen");
     music_setDuration(m2, 355);
 
-    /*Print both songs*/
+    /*Prints both songs*/
     music_formatted_print(stdout, m1);
     music_formatted_print(stdout, m2);
     printf("\n");
 
-    /*Compare the first and the second one*/
+    /*Compares the first and the second one*/
     cmp = music_cmp(m1, m2);
 
     if (cmp != 0) {
@@ -55,10 +55,10 @@ int main () {
         printf("Equals? Yes\n");
     }
         
-    /*Print second song title*/
+    /*Prints second song title*/
     printf("Music 2 title: %s\n", music_getTitle(m2));
 
-    /*Copy the first song in a third one*/
+    /*Copies the first song in a third one*/
     if (!(m3 = music_copy(m1))) {
         printf("Error copying music\n");
         music_free(m1);
@@ -66,15 +66,15 @@ int main () {
         return 1;
     }
 
-    /*Print id of the third song*/
+    /*Prints the id of the third song*/
     printf("Music 3 id: %ld\n", music_getId(m3));
 
-    /*Play the first and the third song*/
+    /*Plays the first and the third song*/
     music_formatted_print(stdout, m1);
     music_formatted_print(stdout, m3);
     printf("\n");
 
-    /*Compare the first and the third song*/
+    /*Compares the first and the third song*/
     cmp = music_cmp(m1, m3);
 
     if (cmp != 0) {
@@ -83,7 +83,7 @@ int main () {
         printf("Equals? Yes\n");
     }
 
-    /*Free memory*/
+    /*Frees memory*/
     music_free(m1);
     music_free(m2);
     music_free(m3);
