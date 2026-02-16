@@ -10,9 +10,13 @@
  * @see
  */
 
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "radio.h"
+
+int main() {
+    Radio *rad = NULL;
+    
+}
 
