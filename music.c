@@ -46,7 +46,7 @@ Status music_setField (Music *m, char *key, char *value) {
   } else if (strcmp(key, "artist") == 0) {
     return music_setArtist(m, value);
   } else if (strcmp(key, "duration") == 0) {
-    return music_setDuration(m, atol(value));
+    return music_setDuration(m, atoi(value));
   } else if (strcmp(key, "state") == 0) {
     return music_setState(m, (State)atoi(value));
   }
@@ -297,7 +297,7 @@ int music_plain_print(FILE *pf, const void *m) {
     return -1;
   }
 
-  return fprintf(pf, "[%ld, %s, %s, %u, %d]", music->id, music->title, music->artist, music->duration, music->state);
+  return fprintf(pf, "[%ld, %s, %s, %hu, %d]", music->id, music->title, music->artist, music->duration, music->state);
 }
 
 int music_formatted_print(FILE * pf, const void * m) {

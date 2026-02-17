@@ -80,14 +80,13 @@ void radio_free(Radio *r) {
 Status radio_newMusic(Radio *r, char *desc) {
     Music *m = NULL;
     long id;
-    long i, j;
 
     /*Control error*/
     if (!r || !desc) {
         return ERROR;
     }
 
-    if (!(m = music_InitFromString(desc))) {
+    if (!(m = music_initFromString(desc))) {
         return ERROR;
     }
 
@@ -277,7 +276,7 @@ int radio_print(FILE *pf, const Radio *r) {
         for (j = 0; j < r->num_music; j++) {
             if (r->relations[i][j] == TRUE) {
                 fprintf(pf, ": ");
-                counter += music_plain_print(pf, r->songs[j])
+                counter += music_plain_print(pf, r->songs[j]);
             }
         }
 
