@@ -301,9 +301,12 @@ int music_plain_print(FILE *pf, const void *m) {
 }
 
 int music_formatted_print(FILE * pf, const void * m) {
-	Music * aux;
+	Music *aux = NULL;
 	int counter = 0, minutes, sec;
-	if (!pf || !m) return -1;
+
+	if (!pf || !m) {
+    return -1;
+  }
 
 	aux = (Music*) m;
 	
