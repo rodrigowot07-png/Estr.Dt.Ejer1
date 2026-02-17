@@ -161,7 +161,7 @@ Status music_setTitle(Music *m, const char *title){
     return ERROR;
   }
 
-  if(strlen(title)>=STR_LENGTH){
+  if(strlen(title) >= STR_LENGTH){
     return ERROR;
   }
 
@@ -185,7 +185,7 @@ Status music_setArtist(Music *m, const char *artist){
     return ERROR;
   }
 
-  if(strlen(artist)>=STR_LENGTH){
+  if(strlen(artist) >= STR_LENGTH){
     return ERROR;
   }
 
@@ -223,7 +223,7 @@ unsigned short music_getDuration(const Music *m){
 }
 
 Status music_setState(Music *m, const State state){
-  if(!m || state==ERROR_MUSIC){
+  if(!m || state == ERROR_MUSIC){
     return ERROR;
   }
 
