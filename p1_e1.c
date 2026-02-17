@@ -77,6 +77,7 @@ int main () {
     /*Compares the first and the third song*/
     cmp = music_cmp(m1, m3);
 
+    /*Determines if the songs are equal or not*/
     if (cmp != 0) {
         printf("Equals? No\n");
     } else {
