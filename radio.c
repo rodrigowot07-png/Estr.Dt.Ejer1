@@ -1,3 +1,15 @@
+/**
+ * @file radio.c
+ * @author Nicolas Encinas y Rodrigo Martin
+ * @date February 2026
+ * @mersion 1.0
+ * @brief Library to manage ADT Music
+ *
+ * @details 
+ * 
+ * @see
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
