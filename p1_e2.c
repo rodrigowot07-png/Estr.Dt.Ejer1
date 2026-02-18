@@ -38,9 +38,11 @@ int main() {
     fprintf(stdout, "111 --> 222? %s\n", radio_relationExists(rad, 111, 222) ? "Yes" : "No");
     fprintf(stdout, "222 --> 111? %s\n", radio_relationExists(rad, 222, 111) ? "Yes" : "No");
 
+    /*Prints the connections*/
     fprintf(stdout, "Number of connections from 111: %d\n", radio_getNumberOfRelationsFromId(rad, 111));
     fprintf(stdout, "Number of connections from 222: %d\n", radio_getNumberOfRelationsFromId(rad, 222));
 
+    /*Prints the radio*/
     fprintf(stdout, "All radio reccomendations:\n");
     radio_print(stdout, rad);
 
