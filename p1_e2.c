@@ -27,7 +27,6 @@ int main() {
     }
 
     stat = radio_newMusic(rad, "id:\"111\" title:\"Paint It, Black\" artist:\"The Rolling Stones\" duration:\"202\" state:\"0\"");
-    fprintf(stdout, "Inserting: Paint It, Black... result...: %d\n", stat == OK ? 1 : 0);
 
     stat = radio_newMusic(rad, "id:\"222\" title:\"Every Breath You Take\" artist:\"The Police\" duration:\"253\" state:\"0\"");
     fprintf(stdout, "Inserting: Every Breath You Take... result...: %d\n\n", stat == OK ? 1 : 0);
