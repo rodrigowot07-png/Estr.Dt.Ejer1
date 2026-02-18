@@ -104,7 +104,7 @@ Status radio_newMusic(Radio *r, char *desc) {
         return ERROR;
     }
 
-    /*Adds the new music to *songs and increments the number of songs by 1*/
+    /*Adds the new music to *songs in the last position of the  array*/
     r->songs[r->num_music++] = m;
 
     return OK;
@@ -139,7 +139,7 @@ Status radio_newRelation(Radio *r, long orig, long dest) {
         }
     }
 
-    /*Creates relation*/
+    /*Creates the relation*/
     if (!r->relations[i][j]) {
         r->relations[i][j] = TRUE;
         r->num_relations++;
@@ -188,7 +188,7 @@ Bool radio_relationExists(const Radio *r, long orig, long dest){
     i = radio_findId(r, orig);
     j = radio_findId(r, dest);
 
-    /*Checks if the musics id was found*/
+    /*Checks if the id of both musics were found*/
     if (i == -1 || j == -1) {
         return FALSE;
     }
@@ -238,8 +238,8 @@ long *radio_getRelationsFromId(const Radio *r, long id) {
         return NULL;
     }
 
+    /*Gets the number of relations*/
     counter = radio_getNumberOfRelationsFromId(r, id);
-
     if (counter <= 0) {
         return NULL;
     }
@@ -269,7 +269,7 @@ int radio_print(FILE *pf, const Radio *r) {
     }
 
     for (i = 0; i < r->num_music; i++) {
-        /*Prints the music*/
+        /*Prints the music without format (line)*/
         counter += music_plain_print(pf, r->songs[i]);
 
         /*Prints the relations*/
@@ -308,7 +308,7 @@ Status radio_readFromFile(FILE *fin, Radio *r) {
         if (!fgets(buffer, sizeof(buffer), fin)) {
             return ERROR;
 
-            /*Creates the song and adds it to the radio*/
+          /*Creates the song and adds it to the radio*/
         } else if (radio_newMusic(r, buffer) == ERROR) {
             return ERROR;
         }
