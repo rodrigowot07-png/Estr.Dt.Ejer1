@@ -26,6 +26,7 @@ int main() {
         return 1;
     }
 
+    /*Initializes the new music and prints if it goes well*/
     stat = radio_newMusic(rad, "id:\"111\" title:\"Paint It, Black\" artist:\"The Rolling Stones\" duration:\"202\" state:\"0\"");
     fprintf(stdout, "Inserting: Paint It, Black... result...: ");
     if(stat == OK){
@@ -44,10 +45,11 @@ int main() {
         fprintf(stdout, "0\n\n");
     }
 
-
+    /*Creates a new relation between two ids*/
     stat = radio_newRelation(rad, 222, 111);
     fprintf(stdout, "Inserting radio recommendation: 222 --> 111\n\n");
 
+    /*Prints the relations*/
     fprintf(stdout, "111 --> 222? ");
     if(radio_relationExists(rad, 111, 222) == TRUE){
         fprintf(stdout, "Yes\n");
