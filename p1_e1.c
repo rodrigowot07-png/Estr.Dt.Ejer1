@@ -26,62 +26,62 @@ int main () {
     return 1;
    }
 
-    /*First song*/
+    /* First song data */
     music_setId(m1, 10);
     music_setTitle(m1, "Blinding Lights");
     music_setArtist(m1, "The Weekend");
     music_setDuration(m1, 200);
 
-    /*Second song*/
+    /* Second song data */
     music_setId(m2, 20);
     music_setTitle(m2, "Bohemian Rhapsody");
     music_setArtist(m2, "Queen");
     music_setDuration(m2, 355);
 
-    /*Prints both songs*/
+    /* Prints both songs */
     music_formatted_print(stdout, m1);
     music_formatted_print(stdout, m2);
-    printf("\n");
+    fprintf(stdout, "\n");
 
-    /*Compares the first and the second one*/
+    /* Compares the first and the second song */
     cmp = music_cmp(m1, m2);
 
     if (cmp != 0) {
-        printf("Equals? No\n");
+        fprintf(stdout, "Equals? No\n");
     } else {
-        printf("Equals? Yes\n");
+        fprintf(stdout, "Equals? Yes\n");
     }
         
-    /*Prints second song title*/
+    /* Prints second song title */
     printf("Music 2 title: %s\n", music_getTitle(m2));
 
-    /*Copies the first song in a third one*/
+    /* Copies the first song in a third one */
     if (!(m3 = music_copy(m1))) {
-        printf("Error copying music\n");
+        fprintf(stdout, "Error copying music\n");
         music_free(m1);
         music_free(m2);
         return 1;
     }
 
-    /*Prints the id of the third song*/
-    printf("Music 3 id: %ld\n", music_getId(m3));
+    /* Prints the id of the third song */
+    fprintf(stdout, "Music 3 id: %ld\n", music_getId(m3));
 
-    /*Plays the first and the third song*/
+    /* Plays the first and the third song */
     music_formatted_print(stdout, m1);
     music_formatted_print(stdout, m3);
     printf("\n");
 
-    /*Compares the first and the third song*/
+    /* Compares the first and the third song */
     cmp = music_cmp(m1, m3);
 
-    /*Determines if the songs are equal or not*/
+    /* Determines if the songs are equal or not */
     if (cmp != 0) {
-        printf("Equals? No\n");
+        fprintf(stdout, "Equals? No\n");
     } else {
-        printf("Equals? Yes\n");
+        fprintf(stdout, "Equals? Yes\n");
     }
 
-    /*Frees memory*/
+    /* Clears memory */
     music_free(m1);
     music_free(m2);
     music_free(m3);

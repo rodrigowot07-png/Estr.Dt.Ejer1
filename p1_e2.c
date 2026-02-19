@@ -20,13 +20,13 @@ int main() {
     Radio *rad = NULL;
     Status stat;
 
-    /*Initializes the radio, checking if there are any errors*/
+    /* Initializes the radio, checking if there are any errors */
     if (!(rad = radio_init())) {
         fprintf(stderr, "Error initializing the radio\n");
         return 1;
     }
 
-    /*Initializes the new music and prints if it goes well*/
+    /* Initializes the new music and prints if it goes well */
     stat = radio_newMusic(rad, "id:\"111\" title:\"Paint It, Black\" artist:\"The Rolling Stones\" duration:\"202\" state:\"0\"");
     fprintf(stdout, "Inserting: Paint It, Black... result...: ");
     if(stat == OK){
@@ -45,11 +45,11 @@ int main() {
         fprintf(stdout, "0\n\n");
     }
 
-    /*Creates a new relation between two ids*/
+    /* Creates a new relation between two ids */
     stat = radio_newRelation(rad, 222, 111);
     fprintf(stdout, "Inserting radio recommendation: 222 --> 111\n\n");
 
-    /*Prints the relations*/
+    /* Prints the relations */
     fprintf(stdout, "111 --> 222? ");
     if(radio_relationExists(rad, 111, 222) == TRUE){
         fprintf(stdout, "Yes\n");
@@ -66,14 +66,16 @@ int main() {
         fprintf(stdout, "No\n");
     }
 
-    /*Prints the connections*/
+    /* Prints the connections */
     fprintf(stdout, "Number of connections from 111: %d\n", radio_getNumberOfRelationsFromId(rad, 111));
     fprintf(stdout, "Number of connections from 222: %d\n", radio_getNumberOfRelationsFromId(rad, 222));
 
-    /*Prints the radio*/
+    /* Prints the radio */
     fprintf(stdout, "All radio reccomendations:\n");
     radio_print(stdout, rad);
 
     return 0;
 }
+
+
 

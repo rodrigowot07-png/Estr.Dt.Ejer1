@@ -118,10 +118,12 @@ Music *music_initFromString(char *descr) {
 Music *music_init() {
   Music *m = NULL;
 
+  /* Allocates memory for the Music struct */
   if (!(m = (Music *) calloc (1, sizeof(Music)))) {
     return NULL;
   }
 
+  /* Initializes all the Music data */
     m->id = 0;
     m->title[0] = '\0';
     m->artist[0] = '\0';
@@ -145,6 +147,7 @@ Status music_setId(Music *m, const long id){
   }
 
   m->id = id;
+
   return OK;
 }
 
@@ -228,6 +231,7 @@ Status music_setState(Music *m, const State state){
   }
 
   m->state = state;
+
   return OK;
 }
 
@@ -244,6 +248,7 @@ int music_cmp(const void *m1, const void *m2) {
   const Music *b = (const Music *)m2;
   int title_cmp;
 
+  /* Depending on what music is valid it returns different integers */
   if (!a && !b) {
     return 0;
   } else if (!a) {
@@ -277,10 +282,12 @@ void *music_copy(const void *src) {
     return NULL;
   }
 
+  /* Initializes the copy pointer */
   if (!(copy = music_init())) {
     return NULL;
   }
 
+  /* Stores in the copy pointer the original data */
   copy->id = original->id;
   strcpy(copy->title, original->title);
   strcpy(copy->artist, original->artist);
@@ -302,23 +309,23 @@ int music_plain_print(FILE *pf, const void *m) {
 
 int music_formatted_print(FILE * pf, const void * m) {
 	Music *aux = NULL;
-	int counter = 0, minutes, sec;
+	int counter = 0, minutes, secs;
 
 	if (!pf || !m) {
     return -1;
   }
 
-	aux = (Music*) m;
+	aux = (Music*)m;
 	
 	if (!aux->duration || aux->duration <= 0) return -1;
 	minutes = aux->duration / 60;
-    sec = aux->duration % 60;
+    secs = aux->duration % 60;
 	
 	counter = fprintf(pf, "\t ɴᴏᴡ ᴘʟᴀʏɪɴɢ: %s\n", aux->title);
 	counter += fprintf(pf, "\t • Artist %s •\n", aux->artist);
 	counter += fprintf(pf, "\t──────────⚪──────────\n");
 	counter += fprintf(pf, "\t\t◄◄⠀▐▐ ⠀►►\n");
-	counter += fprintf(pf, "\t 0:00 / %02d:%02d ───○ 🔊⠀\n\n", minutes, sec);
+	counter += fprintf(pf, "\t 0:00 / %02d:%02d ───○ 🔊⠀\n\n", minutes, secs);
 	
 	return counter;
 }

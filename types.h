@@ -13,6 +13,8 @@
 #ifndef TYPES_H_
 #define TYPES_H_
 
+#define MAX_FILE 100
+
 /**
  * @brief ADT Boolean
  */
