@@ -21,13 +21,10 @@ int main () {
     Music *m3 = NULL;
     int cmp;
 
-    m1 = music_init();
-    m2 = music_init();
-
-    if (!m1 || !m2) {
-        printf("Error creating music\n");
-        return 1;
-    }
+   if (!(m1 = music_init()) || !(m2 = music_init())) {
+    fprintf(stdout, "Error creating music\n");
+    return 1;
+   }
 
     /*First song*/
     music_setId(m1, 10);
