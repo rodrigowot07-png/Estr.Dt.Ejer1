@@ -28,7 +28,7 @@ p1_e1.o: p1_e1.c music.h
 #	$(CC) $(CFLAGS) -c p1_e2.c
 	
 #p1_e3.o: p1_e3.c music.h radio.h
-	#$(CC) $(CFLAGS) -c p1_e3.c
+#	$(CC) $(CFLAGS) -c p1_e3.c
 
 music.o: music.c music.h
 	$(CC) $(CFLAGS) -c music.c
