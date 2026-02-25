@@ -26,19 +26,28 @@ int main (int argc, char *argv[]){
         return 1;
     }
 
+    /* Open the file */
     if(!(fin = fopen(argv[1], "r"))){
         fprintf(stderr, "Error opening the file\n");
         return 1;
     }
 
+    /* Read the file */
     stat = radio_readFromFile(fin, rad);
     if(stat == ERROR){
         fprintf(stderr, "Error reading the file\n");
         return 1;
     }
 
+    /* Prints the radio */
     fprintf(stdout, "All radio reccomendations:\n");
     radio_print(stdout, rad);
+
+    /* Close the file */
+    fclose(fin);
+
+    /* Frees the memory of the radio and the music*/
+    radio_free(rad);
 
     return 0;
 }

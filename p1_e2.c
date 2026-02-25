@@ -74,6 +74,9 @@ int main() {
     fprintf(stdout, "All radio reccomendations:\n");
     radio_print(stdout, rad);
 
+    /* Frees the memory of the radio and the music */
+    radio_free(rad);
+
     return 0;
 }
 
