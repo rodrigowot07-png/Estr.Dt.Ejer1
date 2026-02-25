@@ -26,6 +26,11 @@ int main (int argc, char *argv[]){
         return 1;
     }
 
+    if(!(fin = fopen(argv[1], "r"))){
+        fprintf(stderr, "Error opening the file\n");
+        return 1;
+    }
+
     stat = radio_readFromFile(fin, rad);
     if(stat == ERROR){
         fprintf(stderr, "Error reading the file\n");

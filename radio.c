@@ -310,7 +310,9 @@ Status radio_readFromFile(FILE *fin, Radio *r) {
     }
 
     /* Reads the number of songs that the file has */
-    fgets(scan_file, sizeof(MAX_FILE), fin);
+    if((fgets(scan_file, sizeof(scan_file), fin)) == NULL){
+        return ERROR;
+    }
 
     /* Reads the songs one by one */
     for (i = 0; i < atoi(scan_file); i++) {
@@ -324,8 +326,10 @@ Status radio_readFromFile(FILE *fin, Radio *r) {
     }
 
     /* Reads all the relations */
-    while(fgets(scan_file, sizeof(MAX_FILE), fin)) {
-        sscanf(scan_file, "%ld %ld", &orig, &dest);
+    while(fgets(scan_file, sizeof(scan_file), fin)) {
+        if(sscanf(scan_file, "%ld %ld", &orig, &dest)!=2){
+            return ERROR;
+        }
 
         if (radio_newRelation(r, orig, dest) == ERROR) {
             return ERROR;
