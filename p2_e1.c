@@ -2,7 +2,11 @@
 #include <stdio.h>
 #include <string.h>
 
+#include "radio.h"
+#include "stack.h"
+
 int show_player_menu(Stack *history);
+
 int show_player_menu(Stack *history) {
     int option;
     Music *m = NULL;
@@ -31,7 +35,20 @@ int show_player_menu(Stack *history) {
 
 /* TODO MAIN FUNCTION */
 int main (int argc, char **argv) {
+    FILE *fin = NULL;
+    Radio *rad = NULL;
 
+    if(argc < 2){
+        fprintf(stderr, "Error opening the file\n");
+        return 1;
+    }
+
+    if(!(fin = fopen(argv[1], "r"))){
+        fprintf(stderr, "Error opening the file\n");
+        return 1;
+    }
+
+    
 }
 
 
