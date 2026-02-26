@@ -32,10 +32,6 @@ int show_player_menu(Stack *history) {
 /* TODO MAIN FUNCTION */
 int main (int argc, char **argv) {
     FILE *fin = NULL;
-
-    
-
-
 }
 
 
