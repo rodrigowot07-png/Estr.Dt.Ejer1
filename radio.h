@@ -13,6 +13,7 @@
 
 #include "music.h"
 #include "types.h"
+#include "stack.h"
 
 #define MAX_MSC 4096
 
@@ -187,6 +188,6 @@ int radio_print (FILE *pf, const Radio *r);
  *
  * @return OK or ERROR
  */
-Status radio_readFromFile (FILE *fin, Radio *r);
+Status radio_readFromFile (FILE *fin, Radio *r, Stack *stack);
 
 #endif /* radio_H */

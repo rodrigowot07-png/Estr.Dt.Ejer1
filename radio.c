@@ -15,8 +15,7 @@
 
 
 #include "radio.h"
-#include "music.h"
-#include "types.h"
+
 
 #define STR_LENGTH 64
 
@@ -298,7 +297,7 @@ int radio_print(FILE *pf, const Radio *r) {
     return counter;
 }
 
-Status radio_readFromFile(FILE *fin, Radio *r) {
+Status radio_readFromFile(FILE *fin, Radio *r, Stack *stack) {
     char scan_file[MAX_FILE];
     char buffer[STR_LENGTH * 4];
     long orig, dest;
@@ -319,8 +318,12 @@ Status radio_readFromFile(FILE *fin, Radio *r) {
         /* Reads one full line */
         fgets(buffer, sizeof(buffer), fin);
 
-          /* Creates the song and adds it to the radio */
+        /* Creates the song and adds it to the radio */
         if (radio_newMusic(r, buffer) == ERROR) {
+            return ERROR;
+        }
+
+        if(stack_push(stack, buffer) == ERROR){
             return ERROR;
         }
     }
@@ -338,4 +341,3 @@ Status radio_readFromFile(FILE *fin, Radio *r) {
 
     return OK;
 }
-

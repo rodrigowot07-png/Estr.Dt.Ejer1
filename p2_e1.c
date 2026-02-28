@@ -37,6 +37,9 @@ int show_player_menu(Stack *history) {
 int main (int argc, char **argv) {
     FILE *fin = NULL;
     Radio *rad = NULL;
+    Stack *stack = NULL;
+    Status stat;
+    int pinput;
 
     if(argc < 2){
         fprintf(stderr, "Error opening the file\n");
@@ -48,7 +51,39 @@ int main (int argc, char **argv) {
         return 1;
     }
 
-    
+    if (!(rad = radio_init())) {
+        fprintf(stderr, "Error initializing the radio\n");
+        return 1;
+    }
+
+    if(!(stack = stack_init())){
+        radio_free(rad);
+        return 1;
+    }
+
+    stat = radio_readFromFile(fin, rad, stack);
+    if(stat == ERROR){
+        fprintf(stderr, "Error reading the file\n");
+        radio_free(rad);
+        stack_free(stack);
+        return 1;
+    }
+
+    pinput = show_player_menu(stack);
+
+    while(pinput == 1){
+        stack_pop(stack);
+        pinput = show_player_menu(stack);
+
+        if(pinput != 1 || pinput != 2){
+            fprintf(stderr, "Not a valid option\n");
+            pinput = show_player_menu(stack);
+        }
+
+        if(pinput == 2){
+            radio_free(rad);
+            stack_free(stack);
+            return 0;
+        }
+    }
 }
-
-
