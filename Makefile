@@ -53,5 +53,5 @@ run:
 	./p2_e1 playlist1.txt
 
 runv:
-	@echo ">>>>>>Running p2_e1 with valgrind
+	@echo ">>>>>>Running p2_e1 with valgrind"
 	valgrind --leak-check=full ./p2_e1
