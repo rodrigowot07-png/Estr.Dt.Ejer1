@@ -14,7 +14,7 @@ Status fuse_stacks(Stack *stin1, Stack *stin2, Stack *stout) {
         return ERROR;
     }
 
-    while (stack_is_empty(stin1) == FALSE && stack_is_empty(stin2) == FALSE) {
+    while (stack_isEmpty(stin1) == FALSE && stack_isEmpty(stin2) == FALSE) {
         m1 = (Music *)stack_top(stin1);
         m2 = (Music *)stack_top(stin2);
 
@@ -29,9 +29,9 @@ Status fuse_stacks(Stack *stin1, Stack *stin2, Stack *stout) {
         }
     }
 
-    s = (stack_is_empty(stin1) == TRUE) ? stin2 : stin1;
+    s = (stack_isEmpty(stin1) == TRUE) ? stin2 : stin1;
 
-    while (stack_is_empty(s) == FALSE) {
+    while (stack_isEmpty(s) == FALSE) {
         e = stack_pop(s);
 
         if (stack_push(stout, e) == ERROR) {
@@ -53,14 +53,33 @@ int main(int argc, char *argv[]) {
     }
 
     r1 = radio_init();
+    if (r1 == NULL) { 
+        printf("DEBUG: Error in r1 (radio_init)\n"); 
+        return 1; 
+    }
+    
     r2 = radio_init();
+    if (r2 == NULL) { 
+        printf("DEBUG: Error in r2 (radio_init)\n"); 
+        return 1; 
+    }
+    
+    s1 = stack_init();
+    if (s1 == NULL) { 
+        printf("DEBUG: Error in s1 (stack_init)\n"); 
+        return 1; 
+    }
+    
     s2 = stack_init();
-    s2 = stack_init();
+    if (s2 == NULL) { 
+        printf("DEBUG: Error in s2 (stack_init)\n"); 
+        return 1; 
+    }
+    
     sout = stack_init();
-
-    if (!r1 || !r2 || !s1 || !s2 || !sout) {
-        fprintf(stderr, "Error initializing structs\n");
-        return 1;
+    if (sout == NULL) { 
+        printf("DEBUG: Error in sout (stack_init)\n"); 
+        return 1; 
     }
 
     if (!(f1 = fopen(argv[1], "r"))) {
@@ -88,7 +107,7 @@ int main(int argc, char *argv[]) {
         stack_print(stdout, sout, music_plain_print);
         printf("\n");
     } else {
-        fprintf(stderr, "Error combinig playlists\n");
+        fprintf(stderr, "Error combining playlists\n");
     }
 
     radio_free(r1);

@@ -26,7 +26,7 @@ p2_e1: $(OBJECTSP2E1)
 	$(CC) $(CFLAGS) -o p2_e1 $(OBJECTSP2E1) -L. -lstack
 
 p2_e2a: $(OBJECTSP2E2A)
-    $(CC) $(CFLAGS) -o p2_e2a $(OBJECTSP2E2A) -L. -lstack	
+	$(CC) $(CFLAGS) -o p2_e2a $(OBJECTSP2E2A) -L. -lstack	
 
 #p1_e1.o: p1_e1.c music.h
 #	$(CC) $(CFLAGS) -c p1_e1.c
@@ -41,7 +41,7 @@ p2_e1.o: p2_e1.c music.h radio.h
 	$(CC) $(CFLAGS) -c p2_e1.c
 
 p2_e2a.o: p2_e2a.c music.h radio.h
-    $(CC) $(CFLAGS) -c p2_e2a.c
+	$(CC) $(CFLAGS) -c p2_e2a.c
 
 music.o: music.c music.h
 	$(CC) $(CFLAGS) -c music.c
@@ -56,8 +56,8 @@ clean:
 	rm -rf *.o $(EJS)
 
 run_e2a:
-        @echo ">>>>>>Running p2_e2a with playlistA and playlistB"
-		./p2_e2a playlistA.txt playlistB.txt
+	@echo ">>>>>>Running p2_e2a with playlistA and playlistB"
+	./p2_e2a playlistA.txt playlistB.txt
 		
 run:
 	@echo ">>>>>>Running p2_e1"
