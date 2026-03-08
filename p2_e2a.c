@@ -48,7 +48,7 @@ int main(int argc, char *argv[]) {
     Stack *s1 = NULL, *s2 = NULL, *sout = NULL;
 
     if (argc < 3) {
-        fprintf(stderr, "Error, use: %s <playlist1.txt> <playlist2.txt>\n", argv[0]);
+        fprintf(stderr, "Error, use: %s <playlistA.txt> <playlistB.txt>\n", argv[0]);
         return 1;
     }
 
