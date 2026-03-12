@@ -30,15 +30,23 @@ int show_player_menu(Stack *history) {
 
     scanf("%d", &option);
 
+    while(option != 1 && option != 2){
+        printf("Invalid option\n");
+        while(getchar() != '\n');
+
+        printf("Choose an option: ");
+
+        scanf("%d", &option);
+    }
+
     return option;
 }
 
 /* TODO MAIN FUNCTION */
-int main (int argc, char **argv) {
+int main (int argc, char *argv[]) {
     FILE *fin = NULL;
     Radio *rad = NULL;
     Stack *stack = NULL;
-    void *pop;
     Status stat;
     int pinput;
 
@@ -74,11 +82,7 @@ int main (int argc, char **argv) {
         pinput = show_player_menu(stack);
 
         if (pinput == 1) {
-            pop = stack_pop(stack);
-        }
-
-        if (pop) {
-            music_free(pop);
+            stack_pop(stack);
         }
         
     } while (pinput != 2);
