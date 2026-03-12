@@ -91,6 +91,7 @@ void radio_free(Radio *r) {
 Status radio_newMusic(Radio *r, char *desc) {
     Music *m = NULL;
     long id;
+    int index = 0;
 
     /* Control error */
     if (!r || !desc) {
@@ -112,6 +113,14 @@ Status radio_newMusic(Radio *r, char *desc) {
     /* Checks that there is space in order to add more musics */
     if (r->num_music > MAX_MSC) {
         music_free(m);
+        return ERROR;
+    }
+
+    if ((index = radio_getNumberOfMusic(r)) == -1) {
+        return ERROR;
+    }
+
+    if(music_setIndex(m, index) == ERROR) {
         return ERROR;
     }
 
@@ -326,4 +335,40 @@ Status radio_readFromFile(FILE *fin, Radio *r, Stack *stack) {
     }
 
     return OK;
+}
+
+Status radio_depthSearch(Radio *r, long from_id, long to_id) {
+    Music *mi = NULL;
+    Music *mf = NULL;
+    Stack *s = NULL;
+
+    if (!r || from_id < 0 || to_id < 0) {
+        return ERROR;
+    }
+
+    mi = r->songs[from_id];
+    mf = r->songs[to_id];
+
+    music_setState(mi, NOT_LISTENED);
+    music_setState(mf, NOT_LISTENED);
+
+    if (!(s = stack_init())) {
+        return ERROR;
+    } else {
+        music_setState(mi, LISTENED);
+    }
+
+
+
+    
+
+   
+
+
+
+
+
+
+
+
 }

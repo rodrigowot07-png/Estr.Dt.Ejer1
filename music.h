@@ -194,6 +194,25 @@ Status music_setDuration (Music * m, const unsigned short duration);
  */
 Status music_setState (Music * m, const State state);
 
+/**
+ * @brief Gets the position of the music searched in the Radioo array
+ * 
+ * @param m Music pointer
+ * @return index of the array
+ */
+int music_getIndex(const Music *m);
+
+/**
+ * @brief Updates the position of the music searched in the Radio array
+ * 
+ * @param m Music pointer
+ * @param index the position in the array
+ * @return OK or ERROR in case of error
+ */
+Status music_setIndex(Music *m, int index);
+
+
+
 
 
 /**
