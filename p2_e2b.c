@@ -131,6 +131,8 @@ int main(int argc, char *argv[]) {
     stack_free(s1);
     stack_free(s2);
     stack_free(sout);
-
+    fclose(f1);
+    fclose(f2);
+    
     return 0;
 }

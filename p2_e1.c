@@ -89,6 +89,7 @@ int main (int argc, char *argv[]) {
 
     radio_free(rad);
     stack_free(stack);
+    fclose(fin);
 
     return 0;
 }
